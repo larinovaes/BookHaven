@@ -18,3 +18,25 @@ With the [KMM plugin for Android Studio](https://plugins.jetbrains.com/plugin/14
 
 * Visit [Kotlin Multiplatform Mobile Developer Portal](https://kotlinlang.org/lp/mobile/) to learn more about the technology
 * Check out the [Networking and data storage with KMM hands-on](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/) lab to learn how to create a mobile application for Android and iOS with a shared codebase with Ktor and SQLDelight.
+
+# BookHaven
+
+**BookHaven** é um aplicativo dedicado ao download de livros. Oferecemos uma plataforma para conectar leitores que desejam compartilhar seus livros com aqueles que buscam novas leituras emocionantes.
+
+## Funcionalidades Principais
+
+- **Download de Livros:** Encontre e baixe uma ampla variedade de livros gratuitos disponíveis para todos os gostos.
+- **Perfil do Usuário:** Crie seu perfil, adicione livros à sua biblioteca e acompanhe suas leituras.
+
+## Iniciativa Futura: Doação de Livros
+
+Estamos planejando introduzir a funcionalidade de doação de livros em futuras atualizações do **BookHaven**. Com essa iniciativa, os usuários poderão compartilhar seus livros usados ou não desejados com a comunidade. Fique atento às atualizações!
+
+## Como Contribuir
+
+Se você deseja contribuir para o desenvolvimento do **BookHaven**, siga estas etapas:
+
+1. Faça um fork do repositório (clique no botão Fork no topo desta página).
+2. Clone o fork em sua máquina local.
+   ```bash
+   git clone https://github.com/seunome/BookHaven.git
