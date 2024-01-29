@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KmmSample"
+rootProject.name = "BookHaven"
 
 include(":androidApp")
 include(":shared")
