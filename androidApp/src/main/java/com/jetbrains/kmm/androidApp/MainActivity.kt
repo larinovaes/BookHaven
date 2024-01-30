@@ -4,7 +4,11 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
+import com.jetbrains.kmm.androidApp.ui.Login
 import com.jetbrains.kmm.androidApp.ui.SplashScreen
 import com.jetbrains.kmm.shared.Greeting
 
@@ -18,7 +22,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BookHavenTheme {
-                SplashScreen()
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = "SPLASH"
+                ) {
+                    composable("SPLASH") {
+                        SplashScreen(navController)
+                    }
+                    composable("LOGIN") {
+                        Login()
+                    }
+                }
             }
         }
     }

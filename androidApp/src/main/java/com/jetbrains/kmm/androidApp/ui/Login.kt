@@ -1,23 +1,25 @@
 package com.jetbrains.kmm.androidApp.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +28,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -33,20 +36,26 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.jetbrains.androidApp.R
+import com.jetbrains.kmm.androidApp.theme.DarkGray
+import com.jetbrains.kmm.androidApp.theme.LightGrey
 
 @Composable
-fun Login() {
+fun Login(
+    navController: NavController = rememberNavController()
+) {
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(top = 24.dp)
             .background(Color.White),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
         ) {
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         Image(
             painter = painterResource(id = R.drawable.book_logo),
             contentDescription = "icon inicial",
@@ -60,53 +69,108 @@ fun Login() {
             color = MaterialTheme.colors.onBackground,
         )
     }
-
-    SendMessageSection()
+    AddData()
+    AccessButton(
+        onClick = {}
+    )
 }
 
 @Composable
-private fun SendMessageSection() {
+private fun AddData() {
     var email by remember { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var passwordHidden by rememberSaveable { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+            .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TextField(
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 18.dp),
             value = email,
             onValueChange = { email = it },
-            label = { Text("E-mail") },
-            placeholder = {
-                Text(text = "E-mail")
-            }
+            label = { Text(text = "E-mail", style = MaterialTheme.typography.h1) },
+            shape = RoundedCornerShape(20.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                backgroundColor = LightGrey,
+                disabledBorderColor = Color.Transparent,
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                cursorColor = DarkGray,
+            )
         )
         Spacer(modifier = Modifier.height(16.dp))
 
-        TextField(
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 18.dp, vertical = 16.dp),
             value = password,
             onValueChange = { password = it },
             singleLine = true,
             visualTransformation =
             if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
+            label = {
+                    Text(text = "Password", style = MaterialTheme.typography.h1)
+            },
+            shape = RoundedCornerShape(20.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                backgroundColor = LightGrey,
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                cursorColor = DarkGray,
+            ),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             trailingIcon = {
                 IconButton(onClick = { passwordHidden = !passwordHidden }) {
                     val visibilityIcon =
-                       if (passwordHidden) Icons.Filled.FavoriteBorder else Icons.Filled.Favorite
+                       if (passwordHidden) painterResource(id = R.drawable.eye_close) else painterResource(id = R.drawable.eye_open)
                     // Please provide localized description for accessibility services
                     val description = if (passwordHidden) "Show password" else "Hide password"
-                    Icon(imageVector = visibilityIcon, contentDescription = description)
+                    Image(
+                        painter =  visibilityIcon,
+                        contentDescription = description,
+                        modifier = Modifier.size(24.dp))
                 }
             }
         )
     }
 
 }
+
+@Composable
+fun AccessButton(onClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .padding(bottom = 90.dp)
+            .fillMaxSize()
+            .padding(horizontal = 18.dp),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(48.dp)
+                .clip(RoundedCornerShape(16.dp)),
+            onClick = { onClick() },
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Black,
+            )
+        ) {
+            Text(
+                text = "Acessar",
+                color = Color.White,
+                style = MaterialTheme.typography.h2
+            )
+        }
+    }
+}
+
 
 @Preview
 @Composable
