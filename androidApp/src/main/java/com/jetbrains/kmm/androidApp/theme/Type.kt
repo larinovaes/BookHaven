@@ -47,5 +47,11 @@ val Typography = Typography(
         fontFamily = inriaSerif,
         fontWeight = FontWeight.Bold,
         fontSize = 14.sp
-    )
+    ),
+    h4 = TextStyle(
+     color = Black,
+    fontFamily = inriaSerif,
+    fontWeight = FontWeight.Bold,
+    fontSize = 32.sp
+)
 )

@@ -8,7 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
-import com.jetbrains.kmm.androidApp.ui.Login
+import com.jetbrains.kmm.androidApp.ui.HomeScreen
+import com.jetbrains.kmm.androidApp.ui.LoginScreen
 import com.jetbrains.kmm.androidApp.ui.SplashScreen
 import com.jetbrains.kmm.shared.Greeting
 
@@ -25,13 +26,16 @@ class MainActivity : AppCompatActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "SPLASH"
+                    startDestination = "splash"
                 ) {
-                    composable("SPLASH") {
+                    composable("splash") {
                         SplashScreen(navController)
                     }
-                    composable("LOGIN") {
-                        Login()
+                    composable("login") {
+                        HomeScreen()
+                    }
+                    composable("home") {
+                        //HomeScreen()
                     }
                 }
             }

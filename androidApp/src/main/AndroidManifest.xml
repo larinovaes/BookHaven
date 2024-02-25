@@ -5,8 +5,8 @@
         android:label="BookHaven"
         android:allowBackup="false"
         android:supportsRtl="true"
-        android:icon="@drawable/book_logo"
-        android:roundIcon="@drawable/book_logo"
+        android:icon="@drawable/ic_books_logo"
+        android:roundIcon="@drawable/ic_books_logo"
         android:theme="@style/Theme.BookHavenTheme.NoActionBar"
         android:dataExtractionRules="@xml/data_extraction_rules">
         <activity

@@ -37,7 +37,7 @@ fun SplashScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.book_logo),
+            painter = painterResource(id = R.drawable.ic_books_logo),
             contentDescription = "icon inicial",
             modifier = Modifier.size(150.dp),
         )
@@ -45,7 +45,7 @@ fun SplashScreen(
 
         Text(
             text = "BookHaven",
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.h4,
             color = MaterialTheme.colors.onBackground,
         )
     }

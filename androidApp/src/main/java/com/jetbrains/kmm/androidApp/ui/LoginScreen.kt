@@ -45,12 +45,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.jetbrains.androidApp.R
 import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
-import com.jetbrains.kmm.androidApp.theme.ColorBlue
 import com.jetbrains.kmm.androidApp.theme.ColorLightGrey
 import com.jetbrains.kmm.androidApp.theme.DarkGray
 
 @Composable
-fun Login(
+fun LoginScreen(
     navController: NavController = rememberNavController()
 ) {
     val context = LocalContext.current
@@ -59,10 +58,12 @@ fun Login(
             .background(Color.White)
             .fillMaxSize()
     ) {
-        SessionLogo()
-        AddData()
-        AccessButton(onClick = { Toast.makeText(context, "Acessar", Toast.LENGTH_LONG).show() })
-        SessionRegister()
+        Column {
+            SessionLogo()
+            AddData()
+            AccessButton(onClick = { Toast.makeText(context, "Acessar", Toast.LENGTH_LONG).show() })
+            SessionRegister()
+        }
     }
 }
 
@@ -70,14 +71,14 @@ fun Login(
 private fun SessionLogo() {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(top = 36.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(16.dp))
         Image(
-            painter = painterResource(id = R.drawable.book_logo),
+            painter = painterResource(id = R.drawable.ic_books_logo),
             contentDescription = "icon inicial",
             modifier = Modifier.size(130.dp),
         )
@@ -98,7 +99,8 @@ private fun AddData() {
     var passwordHidden by rememberSaveable { mutableStateOf(true) }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        Modifier.fillMaxWidth()
+            .padding(top = 24.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -122,7 +124,7 @@ private fun AddData() {
 
         OutlinedTextField(modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 18.dp, vertical = 16.dp),
+            .padding(horizontal = 18.dp, vertical = 14.dp),
             value = password,
             onValueChange = { password = it },
             singleLine = true,
@@ -141,8 +143,8 @@ private fun AddData() {
             trailingIcon = {
                 IconButton(onClick = { passwordHidden = !passwordHidden }) {
                     val visibilityIcon =
-                        if (passwordHidden) painterResource(id = R.drawable.eye_close) else painterResource(
-                            id = R.drawable.eye_open
+                        if (passwordHidden) painterResource(id = R.drawable.ic_eye_close) else painterResource(
+                            id = R.drawable.ic_eye_open
                         )
                     // Please provide localized description for accessibility services
                     val description = if (passwordHidden) "Show password" else "Hide password"
@@ -158,12 +160,11 @@ private fun AddData() {
 }
 
 @Composable
-fun AccessButton(onClick: () -> Unit) {
+private fun AccessButton(onClick: () -> Unit) {
     Column(
         modifier = Modifier
-            .padding(bottom = 90.dp)
-            .fillMaxSize()
-            .padding(horizontal = 18.dp),
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -185,18 +186,13 @@ fun AccessButton(onClick: () -> Unit) {
 }
 
 @Composable
-fun SessionRegister() {
+private fun SessionRegister() {
     val context = LocalContext.current
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 56.dp),
-        verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 250.dp),
     ) {
-        Divider(
-            color = Color.LightGray, thickness = 1.dp
-        )
+        Divider(color = Color.LightGray, thickness = 1.dp)
     }
     Spacer(modifier = Modifier.height(4.dp))
 
@@ -206,17 +202,13 @@ fun SessionRegister() {
 }
 
 @Composable
-fun RegisterButton(onClick: () -> Unit) {
-    val activeTextColor = ColorBlue
+private fun RegisterButton(onClick: () -> Unit) {
     val inactiveTextColor = Color.Gray
-    var click by rememberSaveable { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
             .clickable { onClick() },
         verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextButton(onClick = { onClick() }) {
             Text(
@@ -232,6 +224,6 @@ fun RegisterButton(onClick: () -> Unit) {
 @Composable
 private fun LoginPreview() {
     BookHavenTheme {
-        Login()
+        LoginScreen()
     }
 }
