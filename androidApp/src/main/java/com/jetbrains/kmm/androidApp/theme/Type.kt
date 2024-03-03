@@ -53,5 +53,17 @@ val Typography = Typography(
     fontFamily = inriaSerif,
     fontWeight = FontWeight.Bold,
     fontSize = 32.sp
-)
+    ),
+    h5 = TextStyle(
+        color = Black,
+        fontFamily = inriaSerif,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp
+    ),
+    h6 = TextStyle(
+        color = DarkGray,
+        fontFamily = inriaSerif,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp
+    )
 )

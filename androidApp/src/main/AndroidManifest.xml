@@ -8,6 +8,7 @@
         android:icon="@drawable/ic_books_logo"
         android:roundIcon="@drawable/ic_books_logo"
         android:theme="@style/Theme.BookHavenTheme.NoActionBar"
+        android:name="com.jetbrains.kmm.androidApp.BookHavenApplication"
         android:dataExtractionRules="@xml/data_extraction_rules">
         <activity
             android:name="com.jetbrains.kmm.androidApp.MainActivity"

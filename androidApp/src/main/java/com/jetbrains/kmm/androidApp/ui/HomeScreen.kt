@@ -57,7 +57,7 @@ import com.jetbrains.kmm.androidApp.theme.ColorLightGrey
 import com.jetbrains.kmm.androidApp.theme.DarkGray
 import com.jetbrains.kmm.androidApp.theme.Gainsboro
 import com.jetbrains.kmm.androidApp.theme.LightGrey
-import com.jetbrains.kmm.androidApp.ui.model.Books
+import com.jetbrains.kmm.androidApp.ui.model.BooksModel
 
 @Composable
 fun HomeScreen() {
@@ -82,16 +82,16 @@ fun HomeScreen() {
             AvailableBooksSession()
             Books(
                 book = listOf(
-                    Books(title = "A cinco passos de voce",
+                    BooksModel(title = "A cinco passos de voce",
                         image = R.drawable.cinco_passos_de_voce_livro
                     ),
-                    Books(title = "Ela fica com A Garota",
+                    BooksModel(title = "Ela fica com A Garota",
                         image = R.drawable.ela_fica_com_a_garota
                     ),
-                    Books(title = "Princesa das cinzas",
+                    BooksModel(title = "Princesa das cinzas",
                         image = R.drawable.princesa_das_cinzas
                     ),
-                    Books(title = "Princesa das cinzas",
+                    BooksModel(title = "Princesa das cinzas",
                         image = R.drawable.romeu_e_julieta
                     )
                 )
@@ -285,7 +285,7 @@ private fun AvailableBooksSession() {
     }
 }
 @Composable
-private fun Books(book: List<Books>) {
+private fun Books(book: List<BooksModel>) {
     Column(modifier = Modifier.fillMaxWidth()) {
         LazyVerticalGrid(columns = GridCells.Fixed(2)) {
             items(book.size) {
@@ -297,15 +297,15 @@ private fun Books(book: List<Books>) {
 }
 
 @Composable
-private fun ListBook(books: Books, onClick: () -> Unit) {
+private fun ListBook(books: BooksModel, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .clickable { onClick }) {
         Surface(
             modifier = Modifier
-            .height(184.dp)
-            .width(184.dp)
-            .padding(top = 16.dp, start = 8.dp)
+                .height(184.dp)
+                .width(184.dp)
+                .padding(top = 16.dp, start = 8.dp)
         ) {
             Image(painter = painterResource(id = books.image), contentDescription = null,)
 
