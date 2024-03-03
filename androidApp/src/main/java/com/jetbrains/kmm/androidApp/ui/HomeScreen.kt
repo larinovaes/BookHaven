@@ -74,7 +74,7 @@ fun HomeScreen() {
                     StateMenu.Download,
                     StateMenu.MY_BOOKS,
                     StateMenu.STORE,
-                    StateMenu.PALL
+                    StateMenu.BookShare
                     ),
                 onItemClick = {}
             )
