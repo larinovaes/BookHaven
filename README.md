@@ -15,6 +15,10 @@ Este projeto busca construir uma aplicação adotando as melhores práticas e as
 - Kotlin
 - Coroutines
 
+## 📱 Design
+
+As telas do BookHaven foram desenvolvidas com base nos protótipos criados no Figma. Acesse [aqui](https://www.figma.com/file/dRZrEFEfOS6qEyMBAni3uX/books?type=design&node-id=0-1&mode=design&t=Q271LSJXeicqQiiD-0) para visualizar os protótipos e a inspiração por trás do design do aplicativo.
+
 ## 📌 Principais Funcionalidades
 
 - Download de Livros: Explore e baixe uma ampla variedade de livros gratuitos, atendendo a diversos gostos e interesses.
