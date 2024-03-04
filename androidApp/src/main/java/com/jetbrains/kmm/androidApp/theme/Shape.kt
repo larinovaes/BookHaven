@@ -1,4 +1,4 @@
-package com.jetbrains.kmm.androidApp.theme
+package com.jetbrains.kmm.androidapp.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

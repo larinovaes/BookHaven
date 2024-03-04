@@ -1,8 +1,7 @@
-package com.jetbrains.kmm.androidApp.ui
+package com.jetbrains.kmm.androidApp.presentations.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,7 +32,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -43,8 +41,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.jetbrains.androidApp.R
-import com.jetbrains.kmm.androidApp.Route
-import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
+import com.jetbrains.kmm.androidApp.router.Route
+import com.jetbrains.kmm.androidApp.ui.LoginViewModel
+import com.jetbrains.kmm.androidapp.theme.BookHavenTheme
 import com.jetbrains.kmm.androidApp.theme.ColorLightGrey
 import com.jetbrains.kmm.androidApp.theme.DarkGray
 import org.koin.androidx.compose.koinViewModel
@@ -54,11 +53,10 @@ fun LoginScreen(
     navController: NavController,
     viewModel: LoginViewModel = koinViewModel(),
 ) {
-    val emailValue = viewModel.email.collectAsState()
-    val passwordValue = viewModel.password.collectAsState()
+    val uiState = viewModel.uiState.collectAsState()
     LoginScreen(
-        emailValue = emailValue.value,
-        passwordValue = passwordValue.value,
+        emailValue = uiState.value.email,
+        passwordValue = uiState.value.password,
         onEmailChanged = { viewModel.setEmail(it) },
         onPasswordChanged = { viewModel.setPassword(it) },
         onButtonAccessClicked = { navController.navigate(Route.HOME.name) },

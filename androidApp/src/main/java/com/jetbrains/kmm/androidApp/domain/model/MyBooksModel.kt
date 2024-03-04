@@ -1,4 +1,4 @@
-package com.jetbrains.kmm.androidApp.ui.model
+package com.jetbrains.kmm.androidapp.presentations.model
 
 import androidx.annotation.DrawableRes
 

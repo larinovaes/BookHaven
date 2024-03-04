@@ -1,4 +1,4 @@
-package com.jetbrains.kmm.androidApp.theme
+package com.jetbrains.kmm.androidapp.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
@@ -7,6 +7,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.jetbrains.androidApp.R
+import com.jetbrains.kmm.androidApp.theme.Black
+import com.jetbrains.kmm.androidApp.theme.DarkGray
 
 val gothicA1 = FontFamily(
         Font(R.font.gothica1_regular, FontWeight.Normal),

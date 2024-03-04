@@ -1,4 +1,4 @@
-package com.jetbrains.kmm.androidApp.ui
+package com.jetbrains.kmm.androidApp.presentations.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -43,11 +43,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jetbrains.androidApp.R
-import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
-import com.jetbrains.kmm.androidApp.ui.model.MyBooksModel
+import com.jetbrains.kmm.androidapp.presentations.model.MyBooksModel
+import com.jetbrains.kmm.androidapp.theme.BookHavenTheme
 
 @Composable
-fun DownloadScreen() {
+fun MyBooksScreen() {
     Box(
         modifier = Modifier
             .background(Color.White)
@@ -105,7 +105,7 @@ private fun Toolbar() {
                 title = {
                     Text(
                         textAlign = TextAlign.Center,
-                        text = "Download",
+                        text = "My Books",
                         style = MaterialTheme.typography.body1,
                         color = MaterialTheme.colors.onBackground,
                     )
@@ -140,7 +140,7 @@ private fun ListBooks(book: List<MyBooksModel>) {
     ) {
         LazyVerticalGrid(columns = GridCells.Fixed(1)) {
             items(book.size) {
-                ListBookDownload(books = book[it], onClick = {})
+                InfoBook(books = book[it], onClick = {})
             }
         }
     }
@@ -148,7 +148,7 @@ private fun ListBooks(book: List<MyBooksModel>) {
 }
 
 @Composable
-private fun ListBookDownload(books: MyBooksModel, onClick: () -> Unit) {
+private fun InfoBook(books: MyBooksModel, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -192,12 +192,16 @@ private fun ListBookDownload(books: MyBooksModel, onClick: () -> Unit) {
 
 @Composable
 private fun SessionLiked() {
-    var isDownloadChecked by remember { mutableStateOf(false) }
+    var isLikeChecked by remember { mutableStateOf(false) }
+    var isFavoriteChecked by rememberSaveable { mutableStateOf(false) }
 
-    val downloadResourceId =
-        if (isDownloadChecked) R.drawable.ic_confirm
-        else R.drawable.ic_download_details
+    val likeResourceId =
+        if(isLikeChecked) R.drawable.ic_heart_details_enable
+        else R.drawable.ic_heart_details_disable
 
+    val favoriteResourceId =
+        if (isFavoriteChecked) R.drawable.ic_star_enable
+        else R.drawable.ic_star_desanable
     Row(
         Modifier
             .fillMaxWidth()
@@ -209,11 +213,20 @@ private fun SessionLiked() {
         IconButton(
             modifier = Modifier
                 .size(54.dp),
-            onClick = { isDownloadChecked = !isDownloadChecked}
+            onClick = { isLikeChecked = !isLikeChecked }
         ) {
             Image(
-                painter = painterResource(id = downloadResourceId),
+                painter = painterResource(id = likeResourceId),
                 contentDescription = "button heart",
+            )
+        }
+
+        IconButton(modifier = Modifier
+            .size(54.dp),
+            onClick = { isFavoriteChecked = !isFavoriteChecked }) {
+            Image(
+                painter = painterResource(id = favoriteResourceId),
+                contentDescription = "button star",
             )
         }
     }
@@ -221,8 +234,8 @@ private fun SessionLiked() {
 
 @Preview
 @Composable
-private fun DownloadPreview() {
+private fun MyBooksPreview() {
     BookHavenTheme {
-        DownloadScreen()
+        MyBooksScreen()
     }
 }

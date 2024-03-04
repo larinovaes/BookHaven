@@ -1,4 +1,4 @@
-package com.jetbrains.kmm.androidApp.ui
+package com.jetbrains.kmm.androidApp.presentations.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

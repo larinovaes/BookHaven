@@ -1,5 +1,6 @@
-package com.jetbrains.kmm.androidApp.ui
+package com.jetbrains.kmm.androidApp.presentations.screens
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,21 +42,50 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.jetbrains.androidApp.R
-import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
+import com.jetbrains.kmm.androidApp.presentations.viewmodel.BookDetailsViewModel
+import com.jetbrains.kmm.androidapp.theme.BookHavenTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun DetailsScreen() {
+fun BookDetailsScreen(
+    navController: NavController,
+    viewModel: BookDetailsViewModel = koinViewModel()
+) {
+    val uiState = viewModel.uiState.collectAsState()
+    BookDetailsScreen(
+        bookImage = uiState.value.bookImage,
+        title = uiState.value.title,
+        description = uiState.value.description,
+        authorName = uiState.value.authorName,
+        onBackClick = { navController.popBackStack() }
+    )
+}
+
+@Composable
+private fun BookDetailsScreen(
+    @DrawableRes bookImage: Int,
+    title: String,
+    description: String,
+    authorName: String,
+    onBackClick: () -> Unit = {},
+) {
     Box(
         modifier = Modifier
             .background(Color.White)
     ) {
-        Toolbar()
+        Toolbar(onBackClick = onBackClick)
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
         ) {
-            DetailsInfoBook()
+            DetailsInfoBook(
+                bookImage = bookImage,
+                title = title,
+                description = description,
+                authorName = authorName,
+            )
             DetailsSession()
         }
     }
@@ -62,9 +93,10 @@ fun DetailsScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Toolbar() {
+private fun Toolbar(
+    onBackClick: () -> Unit,
+) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
-
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -77,7 +109,7 @@ private fun Toolbar() {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {  }) {
+                    IconButton(onClick = onBackClick) {
                         Icon(
                             painter = rememberVectorPainter(image = Icons.Default.ArrowBack),
                             contentDescription = null
@@ -99,7 +131,12 @@ private fun Toolbar() {
 }
 
 @Composable
-private fun DetailsInfoBook() {
+private fun DetailsInfoBook(
+    @DrawableRes bookImage: Int,
+    title: String,
+    description: String,
+    authorName: String,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -111,7 +148,7 @@ private fun DetailsInfoBook() {
                 .height(226.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.details),
+                painter = painterResource(id = bookImage),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxSize(),
@@ -124,13 +161,13 @@ private fun DetailsInfoBook() {
                 .fillMaxSize()
                 .padding(top = 16.dp, start = 8.dp, end = 8.dp),
             maxLines = 2,
-            text = "A cinco passos de voce",
+            text = title,
             style = MaterialTheme.typography.body1
         )
         Text(
             modifier = Modifier
                 .padding(top = 16.dp, start = 8.dp, end = 8.dp),
-            text = "Stella Grant gosta de estar no controle. Ela parece ser uma adolescente típica, mas em sua rotina há listas de tarefas e inúmeros remédios que ela deve tomar para controlar a fibrose cística, uma doença crônica que impede que seus pulmões funcionem como deveriam.",
+            text = description,
             style = MaterialTheme.typography.h3,
         )
 
@@ -139,7 +176,7 @@ private fun DetailsInfoBook() {
                 .fillMaxSize()
                 .padding(top = 28.dp, start = 8.dp, end = 8.dp),
             maxLines = 2,
-            text = "Autor: Rachael Lippincott ",
+            text = "Autor: $authorName",
             style = MaterialTheme.typography.h3
         )
     }
@@ -213,8 +250,16 @@ private fun DetailsSession() {
 
 @Preview
 @Composable
-private fun DetailsPreview() {
+private fun BookDetailsScreenPreview() {
+    val title = "A cinco passos de voce"
+    val description = "Stella Grant gosta de estar no controle. Ela parece ser uma adolescente típica..."
+    val authorName = "Larissa"
     BookHavenTheme {
-        DetailsScreen()
+        BookDetailsScreen(
+            bookImage = R.drawable.details,
+            title = title,
+            description = description,
+            authorName = authorName,
+        )
     }
 }
