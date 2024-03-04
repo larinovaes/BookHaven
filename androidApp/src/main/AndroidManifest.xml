@@ -2,12 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:label="BookHaven"
         android:allowBackup="false"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:icon="@drawable/ic_books_logo"
+        android:roundIcon="@drawable/ic_books_logo"
+        android:theme="@style/Theme.BookHavenTheme.NoActionBar"
+        android:name="com.jetbrains.kmm.androidApp.BookHavenApplication"
+        android:dataExtractionRules="@xml/data_extraction_rules">
         <activity
-            android:name="com.jetbrains.kmm.androidApp.MainActivity"
-            android:exported="true">
+            android:name="com.jetbrains.kmm.androidApp.presentations.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BookHavenTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
