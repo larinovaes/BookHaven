@@ -44,7 +44,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jetbrains.androidApp.R
 import com.jetbrains.kmm.androidapp.presentations.model.MyBooksModel
-import com.jetbrains.kmm.androidapp.theme.BookHavenTheme
+import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
 
 @Composable
 fun MyBooksScreen() {

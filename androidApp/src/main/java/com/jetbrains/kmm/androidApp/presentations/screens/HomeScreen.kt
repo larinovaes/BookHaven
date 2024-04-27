@@ -64,7 +64,7 @@ import com.jetbrains.kmm.androidApp.theme.ColorLightGrey
 import com.jetbrains.kmm.androidApp.theme.DarkGray
 import com.jetbrains.kmm.androidApp.theme.Gainsboro
 import com.jetbrains.kmm.androidApp.theme.LightGrey
-import com.jetbrains.kmm.androidapp.theme.BookHavenTheme
+import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

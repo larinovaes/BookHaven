@@ -1,4 +1,4 @@
-package com.jetbrains.kmm.androidapp.theme
+package com.jetbrains.kmm.androidApp.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

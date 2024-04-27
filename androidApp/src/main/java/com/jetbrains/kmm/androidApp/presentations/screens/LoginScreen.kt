@@ -43,7 +43,7 @@ import androidx.navigation.NavController
 import com.jetbrains.androidApp.R
 import com.jetbrains.kmm.androidApp.router.Route
 import com.jetbrains.kmm.androidApp.ui.LoginViewModel
-import com.jetbrains.kmm.androidapp.theme.BookHavenTheme
+import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
 import com.jetbrains.kmm.androidApp.theme.ColorLightGrey
 import com.jetbrains.kmm.androidApp.theme.DarkGray
 import org.koin.androidx.compose.koinViewModel

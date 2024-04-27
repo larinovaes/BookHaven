@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.jetbrains.androidApp.R
 import com.jetbrains.kmm.androidApp.presentations.viewmodel.BookDetailsViewModel
-import com.jetbrains.kmm.androidapp.theme.BookHavenTheme
+import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

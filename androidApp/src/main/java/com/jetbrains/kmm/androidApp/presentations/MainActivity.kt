@@ -14,7 +14,7 @@ import com.jetbrains.kmm.androidApp.router.Route
 import com.jetbrains.kmm.androidApp.presentations.screens.LoginScreen
 import com.jetbrains.kmm.androidApp.presentations.screens.MyBooksScreen
 import com.jetbrains.kmm.androidApp.presentations.screens.SplashScreen
-import com.jetbrains.kmm.androidapp.theme.BookHavenTheme
+import com.jetbrains.kmm.androidApp.theme.BookHavenTheme
 
 class MainActivity : AppCompatActivity() {
 
